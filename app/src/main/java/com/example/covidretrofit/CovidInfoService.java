@@ -1,11 +1,14 @@
 package com.example.covidretrofit;
 
+import com.example.covidretrofit.history.CovidHistory;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 public interface CovidInfoService {
+    
     @GET("history")
     @Headers({
             "X-RapidAPI-Host: covid-193.p.rapidapi.com",

@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.covidretrofit.history.CovidHistory;
+
+import java.io.IOException;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,20 +29,27 @@ public class MainActivity extends AppCompatActivity {
 
         CovidInfoService service = retrofit.create(CovidInfoService.class);
 
-        Call<CovidHistory> call = service.covidHistory("usa", "2020-06-02");
+        Call<CovidHistory> call = service.covidHistory( "usa", "2020-06-02");
 
-        call.enqueue(new Callback<CovidHistory>() {
-            @Override
-            public void onResponse(Call<CovidHistory> call, Response<CovidHistory> response) {
-                CovidHistory covidHistory = (CovidHistory) response.body();
-                Log.d("RESULT", covidHistory.getResponse().get(0).getCountry());
-            }
+        String[] countries = {"usa", "canada","russia", "macao"};
+        for(int i = 0; i < countries.length; i++) {
+            call = service.covidHistory( countries[i], "2020-06-02");
+            call.enqueue(new Callback<CovidHistory>() {
+                @Override
+                public void onResponse(Call<CovidHistory> call, Response<CovidHistory> response) {
+                    CovidHistory covidHistory = response.body();
+                    if (covidHistory != null) {
+                        List<com.example.covidretrofit.history.Response> r =  covidHistory.getResponse();
+                        if (r.size() > 0)
+                            Log.d("Covid", r.get(0).getCountry() + r.get(0).getDeaths().getTotal()+"");
+                    }
+                }
 
-            @Override
-            public void onFailure(Call<CovidHistory> call, Throwable t) {
+                @Override
+                public void onFailure(Call<CovidHistory> call, Throwable t) {
 
-            }
-        });
-
+                }
+            });
+        }
     }
 }

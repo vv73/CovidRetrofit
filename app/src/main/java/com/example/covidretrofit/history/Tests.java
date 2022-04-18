@@ -1,31 +1,31 @@
 
-package com.example.covidretrofit;
+package com.example.covidretrofit.history;
 
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("jsonschema2pojo")
-public class Parameters {
+public class Tests {
 
-    private String country;
-    private String day;
+    private String _1MPop;
+    private Integer total;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public String getCountry() {
-        return country;
+    public String get1MPop() {
+        return _1MPop;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void set1MPop(String _1MPop) {
+        this._1MPop = _1MPop;
     }
 
-    public String getDay() {
-        return day;
+    public Integer getTotal() {
+        return total;
     }
 
-    public void setDay(String day) {
-        this.day = day;
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
     public Map<String, Object> getAdditionalProperties() {

@@ -1,5 +1,5 @@
 
-package com.example.covidretrofit;
+package com.example.covidretrofit.history;
 
 import java.util.HashMap;
 import java.util.List;
